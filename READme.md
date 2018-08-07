@@ -24,3 +24,4 @@ e n'est pas une operation
 Il faut lire tout le fichier
 Ecrire un fichier qui permet d'effectuer tous les tests
 Utiliser des noms parlant
+Revue de code par Lucas
