@@ -15,15 +15,7 @@ def operation(x,y, _saisie2):
         if '*' in _saisie2:
             print(saisie(x) * saisie(y))
         if '/' in _saisie2:
-            print(saisie(x) / saisie(y))
-
-#fichier = open("calcul.txt", "w")
-#fichier.write(raw_input("Saisir la premiere valeur: "))
-#fichier.write("\n")
-#fichier.write(raw_input("Saisir la seconde valeur: "))
-#fichier.write("\n")
-#fichier.write(raw_input("Saisir le signe operatoire (+;-;*;/): "))
-#fichier.close()   
+            print(saisie(x) / saisie(y))   
 
 fichier = open("calcul.txt", "r")
 x = fichier.readline()
