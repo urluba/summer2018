@@ -1,38 +1,40 @@
-def saisie(_saisie):
-    try:
-        int(_saisie)
-        return int(_saisie)
-        return True
-    except:
-        return False
+'''
+1 - Lire un fichier
+dont le format est:
+int;int;operation (+|-|*|/)
 
-def operation(x,y, _saisie2):
-    if (saisie(x) != False) & (saisie(y) != False) & (_saisie2 != False):
-        if '+' in _saisie2:
-            print(saisie(x) + saisie(y))
-        if '-' in _saisie2:
-            print(saisie(x) - saisie(y))
-        if '*' in _saisie2:
-            print(saisie(x) * saisie(y))
-        if '/' in _saisie2:
-            print(saisie(x) / saisie(y))   
+exemple:
+1;1;+
 
-fichier = open("calcul.txt", "r")
-x = fichier.readline()
-y = fichier.readline()
-_saisie2 = fichier.readline()
-fichier.close()
+2 - utiliser les informations fournies dans le fichier pour effectuer les operations arithmetiques définies
 
-operation(x,y, _saisie2)
-if (saisie(x) != True):
-    fichier2 = open("erreur.txt", "w")
-    fichier2.write("La valeur {0} n'est pas un nombre")
-    fichier2.close()
-if (saisie(y) != True):
-    fichier2 = open("erreur.txt", "a")
-    fichier2.write("La valeur {0} n'est pas un nombre")
-    fichier2.close()
-if (_saisie2 != True):
-    fichier2 = open("erreur.txt", "a")
-    fichier2.write("La valeur {0} n'est pas un signe")
-    fichier2.close() 
+
+3 - Ecrire les résultats justes dans un fichier
+sous le format:
+
+L'addition de <premier nombre> avec <second nombre> est: <resultat>
+
+4 - Ecrire les erreurs dans un autre fichier sous le format:
+la ligne "a;1;e" contient 2 erreurs:
+a n'est pas un chiffre
+e n'est pas une operation
+
+Il faut lire tout le fichier
+Ecrire un fichier qui permet d'effectuer tous les tests
+Utiliser des noms parlant
+'''
+import os
+import csv
+from fonction_calculs import operation, saisie_int, saisie_ope
+
+def compute_from_file(input_filename):
+    '''
+    Read provided file name and execute operations in it
+    '''
+    with open(os.path.abspath(input_filename), newline='') as fd:
+        for calcul in fd.read().splitlines():
+            left, right, operand = calcul.split(';')
+            print(left, right, operand)
+
+if __name__ == '__main__':
+    compute_from_file('test_input.csv')

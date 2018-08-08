@@ -1,2 +1,5 @@
 # Avoid commit of VS Code local preferences
 .vscode/
+
+# Compiled python cache
+__pycache__/
