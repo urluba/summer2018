@@ -35,4 +35,4 @@ if (saisie(y) != True):
 if (_saisie2 != True):
     fichier2 = open("erreur.txt", "a")
     fichier2.write("La valeur {0} n'est pas un signe")
-    fichier2.close()
+    fichier2.close() 
