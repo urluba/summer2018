@@ -1,23 +1,40 @@
-def saisie(_saisie):
+import sys 
+
+def saisie_int(message):
     try:
-        int(_saisie)
-        return int(_saisie)
+        valeur = input(message)
+        return int(valeur)
     except:
-        print("La valeur {0} n'est pas un nombre".format(_saisie))
-        return False
+        raise TypeError('La valeur {} n\'est pas un nombre'.format(valeur))
 
-def operation(x,y, signe):
-    if (saisie(x) != False) & (saisie(y) != False):
-        if 'A' in signe:
-            print(saisie(x) + saisie(y))
-        if 'M' in signe:
-            print(saisie(x) * saisie(y))
+def saisie_ope(message):
+    valeur = input(message).upper()
+    if valeur in ['A', 'M']:
+        return valeur
 
-i = True
-while i:
-    a = raw_input("Q pour arreter, A pour addition, M pour multiplication: ")
-    if 'Q' in a:
-        i = False
+    if valeur == 'Q':
+        sys.exit("Bye bye")
 
-    if ('A' in a) | ('M' in a):
-        operation(raw_input("Saisir la premiere valeur: "), raw_input("Saisir la seconde valeur: "), a)
+    raise ValueError('{} n\'est pas un operateur supporte'.format(valeur))
+
+def operation(x, y, signe):
+    if 'A' in signe:
+        print(x + y)
+
+    if 'M' in signe:
+        print(x * y)
+
+
+if __name__ == '__main__':
+    while True:
+        try:
+            a = saisie_ope("Q pour arreter, A pour addition, M pour multiplication: ")
+            operation(
+                saisie_int("Saisir la premiere valeur: "),
+                saisie_int("Saisir la seconde valeur: "),
+                a
+            )
+        except TypeError as exception:
+            print(exception)
+        except ValueError as exception:
+            print(exception)
